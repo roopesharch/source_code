@@ -1,0 +1,161 @@
+{
+    "reportName": "Auto Validation",
+    "recipientMailAddress": ["rs60@its.jnj.com"],
+    "turn_email_off": "False",
+    "tiers": [
+        "WW",
+        "NA",
+        "EMEA",
+        "APAC",
+        "LATAM"
+    ],
+    "brands": ["Balversa", "Concerta", "Prezista", "Stelara"],
+    "kpis": [
+        {
+            "kpiName": "Field Actions/Field Alerts",
+            "scorecardName": "Brand-Performance",
+            "bucket": "Reliability / Quality",
+            "auto_validate": "False",
+            "filters": {
+                "date": "202411"
+            },
+            "source": "Synapse",
+            "query": {
+                "ytd_query": "select sum(\"Number of SIFp w Highest Possible Control (YTD)\"), sum(\"Number of SIF-p Reported (YTD)\") from \"Enterprise Dashboard Summary Metrics\" where \"Reporting Period\" between 'start_date' and 'end_date' and \"Parent_ehsssubdivid\"  in  parent_site_id  and  propertycode in property_code",
+                "mtd_query": "select sum(\"Number of SIFp with Highest Possible Control\"), sum(\"Number of SIFp Reported\") from \"Enterprise Dashboard Summary Metrics\" where \"Reporting Period\" between 'start_date' and 'end_date' and \"Parent_ehsssubdivid\" in parent_site_id  and  propertycode in property_code"
+            },
+            "column_names": ["Date", "Brand", "L2", "YTD (OPM)", "YTD (Denodo)", "Monthly (OPM)", "Monthly (Denodo)"],
+            "sheetName": "Brand_cur_forcast_BP_202411",
+            "tolerance": 0.5
+        },
+        {
+            "kpiName": "Severe Injury or Fatality - Precursor (SIF-P) Reporting",
+            "scorecardName": "Deliver",
+            "bucket": "Org Responsibility",
+            "auto_validate": "False",
+            "filters": {
+                "date": "202405"
+            },
+            "source": "Denodo",
+            "query": {
+                "ytd_query": "select sum(\"Number of SIFp w Highest Possible Control (YTD)\"), sum(\"Number of SIF-p Reported (YTD)\") from \"Enterprise Dashboard Summary Metrics\" where \"Reporting Period\" between 'start_date' and 'end_date' and \"Parent_ehsssubdivid\"  in  parent_site_id  and  propertycode in property_code",
+                "mtd_query": "select sum(\"Number of SIFp with Highest Possible Control\"), sum(\"Number of SIFp Reported\") from \"Enterprise Dashboard Summary Metrics\" where \"Reporting Period\" between 'start_date' and 'end_date' and \"Parent_ehsssubdivid\" in parent_site_id  and  propertycode in property_code"
+            },
+            "column_names": ["Date", "Tier", "L2", "YTD (OPM)", "YTD (Denodo)", "Monthly (OPM)", "Monthly (Denodo)"],
+            "sheetName": "DELV_SIF_P_REP_202405",
+            "tolerance": 0.5
+        },
+        {
+            "kpiName": "Severe Injury or Fatality - Controls (SIF-P Controls)",
+            "scorecardName": "Deliver",
+            "bucket": "Org Responsibility",
+            "auto_validate": "False",
+            "filters": {
+                "date": "202407"
+            },
+            "source": "Denodo",
+            "query": {
+                "ytd_query": "select sum(\"Number of SIFp w Highest Possible Control (YTD)\"), sum(\"Number of SIF-p Reported (YTD)\") from \"Enterprise Dashboard Summary Metrics\" where \"Reporting Period\" between 'start_date' and 'end_date' and \"Parent_ehsssubdivid\"  in  parent_site_id  and  propertycode in property_code",
+                "mtd_query": "select sum(\"Number of SIFp with Highest Possible Control\"), sum(\"Number of SIFp Reported\") from \"Enterprise Dashboard Summary Metrics\" where \"Reporting Period\" between 'start_date' and 'end_date' and \"Parent_ehsssubdivid\" in parent_site_id  and  propertycode in property_code"
+            },
+            "column_names": ["Date", "Tier", "L2", "YTD (OPM)", "YTD (Denodo)", "Monthly (OPM)", "Monthly (Denodo)"],
+            "sheetName": "DELV_SIF_P_CON_202405",
+            "tolerance": 0.5
+        },
+        {
+            "kpiName": "On-Time Launch",
+            "scorecardName": "SCLT",
+            "bucket": "Customer Experience",
+            "auto_validate": "False",
+            "filters": {
+                "date": "202404"
+            },
+            "source": "PowerBI",
+            "powerbi_dashboard_link": "https://app.powerbi.com/groups/me/reports/a50e74a6-646e-4583-8f9d-0017c7e15982/ReportSection7431f01eb62837641305?experience=power-bi",
+            "page_title": "Launch Risk & OTL",
+            "expected_l2": ["LM & SM"],
+            "column_names": ["Date", "L2", "YTD (OPM)", "YTD (Power BI)", "Monthly (OPM)", "Monthly (Power BI)"],
+            "sheetName": "SCLT_OTL_202402",
+            "tolerance": 0.5
+        },
+        {
+            "kpiName": "STEM 2 Trend",
+            "scorecardName": "SCLT",
+            "bucket": "Reliability & Resiliency",
+            "auto_validate": "False",
+            "filters": {
+                "date": "202410"
+            },
+            "expected_l2": ["LM & SM"],
+            "source": "Teradata",
+            "sheetName": "stem",
+            "teradata_query": "SELECT Issue#, \"International Brand\", \"Exception Level\", \"Fiscal Mth Yr Nm\" FROM scmain_v.STEM_CRITITY_KELVIN_VW WHERE TO_DATE(\"Fiscal Mth Yr Nm\", 'Mon-YYYY') BETWEEN TO_DATE('startdate', 'Mon-YYYY') AND TO_DATE('enddate', 'Mon-YYYY') AND \"Exception Level\" = 'STEM 2'",
+            "column_names": ["Date", "L2", "YTD (OPM)", "YTD (Teradata)", "Monthly (OPM)", "Monthly (Teradata)"],
+            "tolerance": 0.5
+        },
+        {
+            "kpiName": "Schedule Attainment",
+            "scorecardName": "SCLT",
+            "bucket": "Reliability & Resiliency",
+            "auto_validate": "False",
+            "filters": {
+                "date": "202410"
+            },
+            "expected_l2": ["LM", "SM"],
+            "tolerance": 0.5,
+            "source": "Teradata",
+            "sheetName": "Schedule_Attainment",
+            "teradata_query": "SELECT FISCYRMO, FISCMOYRNM, SCHEDATTNMNT, FISCYRNUM, STDRPTGSITENM FROM scmain_v.SCHED_ATTNMNT_DTL_REF_VW WHERE TO_DATE(FISCMOYRNM, 'Mon-YYYY') BETWEEN TO_DATE('startdate', 'Mon-YYYY') AND TO_DATE('enddate', 'Mon-YYYY')",
+            "column_names": ["Date", "L2", "YTD (OPM)", "YTD (Teradata)", "Monthly (OPM)", "Monthly (Teradata)"]
+        },
+        {
+            "kpiName": "Batch Standard Performance (Large Molecule)",
+            "scorecardName": "Planning",
+            "bucket": "Reliability & Resiliency",
+            "auto_validate": "False",
+            "filters": {
+                "date": "202411"
+            },
+            "tolerance": 0.5,
+            "source": "Teradata",
+            "sheetName": "lost_batches",
+            "teradata_query": "SELECT \"Reporting Month\", \"Reporting Site\", \"Produced At least 90% Scheduled Quantity\", Brand FROM scmain_v.LOST_BATCH_VW WHERE \"Reporting Month\" BETWEEN TO_CHAR(TO_DATE('startdate', 'Mon-YYYY'), 'YYYYMM') AND TO_CHAR(TO_DATE('enddate', 'Mon-YYYY'), 'YYYYMM')",
+            "expected_l2": ["Cork Bio", "Gurabo Parenteral", "Incheon", "Malvern", "Schaffhausen FF"],
+            "column_names": ["Date", "L2", "YTD (OPM)", "YTD (Teradata)", "Monthly (OPM)", "Monthly (Teradata)"]
+        },
+        {
+            "kpiName": "Supplier Reliability DM",
+            "scorecardName": "SCLT",
+            "bucket": "Reliability & Resiliency",
+            "auto_validate": "False",
+            "filters": {
+                "date": "202411"
+            },
+            "expected_l2": ["LM & SM"],
+            "tolerance": 0.5,
+            "query": {
+                "mtd_query": "SELECT ROUND(100 * SUM(CAST(otif AS FLOAT)) / SUM(CAST(total_deliveries AS FLOAT)), 1) AS otif_percentage FROM [jds].[kelvin_dmt_supplier_otif] WHERE TRY_CAST(CONCAT(UPPER(Month_of_GR), ' ', SUBSTRING(year_of_gr, 1, 4)) AS DATE) = CAST('01-' + 'enddate' AS DATE);",
+                "ytd_query": "SELECT ROUND(100 * SUM(CAST(otif AS FLOAT)) / SUM(CAST(total_deliveries AS FLOAT)), 1) AS otif_percentage FROM [jds].[kelvin_dmt_supplier_otif] WHERE TRY_CAST(CONCAT(UPPER(Month_of_GR), ' ', SUBSTRING(year_of_gr, 1, 4)) AS DATE) BETWEEN CAST('01-' + 'startdate' AS DATE) and CAST('01-' + 'enddate' AS DATE);"
+            },
+            "source": "Flatfile",
+            "sheetName": "Supplier_Reliability_DM",
+            "column_names": ["Date", "L2", "YTD (OPM)", "YTD (Teradata)", "Monthly (OPM)", "Monthly (Teradata)"]
+        },
+        {
+            "kpiName": "Stockouts",
+            "scorecardName": "SCLT",
+            "bucket": "Customer Experience",
+            "filters": {
+                "date": "202411"
+            },
+            "source": "CDL",
+            "sheetName": "Stockouts",
+            "auto_validate": "True",
+            "tolerance": 0.5,
+            "expected_l2": ["Concerta", "Type 3", "Types 1 & 2", "LM & SM (#)"],
+            "column_names": ["Date", "L2", "YTD (OPM)", "YTD (CDL)", "Monthly (OPM)", "Monthly (CDl)"]
+        }
+
+
+    ]
+}
